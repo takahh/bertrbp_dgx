@@ -847,6 +847,7 @@ def main():
 
     args = parser.parse_args()
 
+
     if args.should_continue:
         sorted_checkpoints = _sorted_checkpoints(args)
         if len(sorted_checkpoints) == 0:
@@ -876,14 +877,16 @@ def main():
         ptvsd.wait_for_attach()
 
     # Setup CUDA, GPU & distributed training
-    if args.local_rank == -1 or args.no_cuda:
-        device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-        args.n_gpu = torch.cuda.device_count()
-    else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
-        torch.cuda.set_device(args.local_rank)
-        device = torch.device("cuda", args.local_rank)
-        torch.distributed.init_process_group(backend="nccl")
-        args.n_gpu = 1
+    #if args.local_rank == -1 or args.no_cuda:
+        #device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
+    #    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    #    args.n_gpu = torch.cuda.device_count()
+    #else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
+    torch.cuda.set_device(args.local_rank)
+    device = torch.device("cuda", args.local_rank)
+    
+    torch.distributed.init_process_group(backend="nccl")
+    args.n_gpu = 4
     args.device = device
 
     # Setup logging
@@ -958,6 +961,7 @@ def main():
     if args.local_rank == 0:
         torch.distributed.barrier()  # Make sure only the first process in distributed training will download model & vocab
 
+    logger.info("device %s", device)
     model.to(args.device)
 
     logger.info("Training/evaluation parameters %s", args)

@@ -879,6 +879,7 @@ def main():
         device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
         # device = torch.device("cuda")
         args.n_gpu = torch.cuda.device_count()
+        print("pattern A !!!!!!!!!!!!!!")
     else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
         print(args.local_rank)
         torch.cuda.set_device(args.local_rank)
@@ -886,6 +887,7 @@ def main():
         print(device)
         torch.distributed.init_process_group(backend="nccl")
         args.n_gpu = 1
+        print("pattern B !!!!!!!!!!!!!!")
     args.device = device
 
     # Setup logging

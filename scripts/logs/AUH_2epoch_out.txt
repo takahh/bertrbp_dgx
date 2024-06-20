@@ -1,0 +1,53 @@
+#######################
+2
+######### running training ##########
+usage: run_finetune.py [-h] --data_dir DATA_DIR --model_type MODEL_TYPE
+                       [--n_process N_PROCESS] [--should_continue]
+                       --model_name_or_path MODEL_NAME_OR_PATH --task_name
+                       TASK_NAME --output_dir OUTPUT_DIR
+                       [--result_dir RESULT_DIR] [--config_name CONFIG_NAME]
+                       [--tokenizer_name TOKENIZER_NAME]
+                       [--cache_dir CACHE_DIR] [--predict_dir PREDICT_DIR]
+                       [--max_seq_length MAX_SEQ_LENGTH] [--do_cache]
+                       [--do_train] [--do_train_from_scratch] [--do_eval]
+                       [--do_predict] [--evaluate_during_training]
+                       [--do_lower_case]
+                       [--per_gpu_train_batch_size PER_GPU_TRAIN_BATCH_SIZE]
+                       [--per_gpu_eval_batch_size PER_GPU_EVAL_BATCH_SIZE]
+                       [--per_gpu_pred_batch_size PER_GPU_PRED_BATCH_SIZE]
+                       [--early_stop EARLY_STOP]
+                       [--predict_scan_size PREDICT_SCAN_SIZE]
+                       [--gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS]
+                       [--learning_rate LEARNING_RATE]
+                       [--weight_decay WEIGHT_DECAY]
+                       [--adam_epsilon ADAM_EPSILON] [--beta1 BETA1]
+                       [--beta2 BETA2] [--max_grad_norm MAX_GRAD_NORM]
+                       [--attention_probs_dropout_prob ATTENTION_PROBS_DROPOUT_PROB]
+                       [--hidden_dropout_prob HIDDEN_DROPOUT_PROB]
+                       [--rnn_dropout RNN_DROPOUT] [--rnn RNN]
+                       [--num_rnn_layer NUM_RNN_LAYER]
+                       [--rnn_hidden RNN_HIDDEN]
+                       [--num_train_epochs NUM_TRAIN_EPOCHS]
+                       [--max_steps MAX_STEPS] [--warmup_steps WARMUP_STEPS]
+                       [--warmup_percent WARMUP_PERCENT]
+                       [--logging_steps LOGGING_STEPS]
+                       [--save_steps SAVE_STEPS]
+                       [--save_total_limit SAVE_TOTAL_LIMIT]
+                       [--eval_all_checkpoints] [--no_cuda]
+                       [--overwrite_output_dir] [--overwrite_cache]
+                       [--seed SEED] [--fp16]
+                       [--fp16_opt_level FP16_OPT_LEVEL]
+                       [--local_rank LOCAL_RANK] [--server_ip SERVER_IP]
+                       [--server_port SERVER_PORT]
+run_finetune.py: error: unrecognized arguments: -m torch.distributed.launch
+1
+Traceback (most recent call last):
+  File "/home/kimura.t/bert-rbp/examples/run_finetune.py", line 1047, in <module>
+    main()
+  File "/home/kimura.t/bert-rbp/examples/run_finetune.py", line 886, in main
+    torch.cuda.set_device(args.local_rank)
+  File "/home/kimura.t/bert-rbp/bertrbp/lib/python3.10/site-packages/torch/cuda/__init__.py", line 350, in set_device
+    torch._C._cuda_setDevice(device)
+  File "/home/kimura.t/bert-rbp/bertrbp/lib/python3.10/site-packages/torch/cuda/__init__.py", line 247, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx

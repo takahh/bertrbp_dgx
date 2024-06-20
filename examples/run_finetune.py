@@ -844,9 +844,8 @@ def main():
     parser.add_argument("--server_ip", type=str, default="", help="For distant debugging.")
     parser.add_argument("--server_port", type=str, default="", help="For distant debugging.")
 
-
     args = parser.parse_args()
-    args.local_rank = int(os.environ['LOCAL_RANK'])
+    # args.local_rank = int(os.environ['LOCAL_RANK'])
 
     if args.should_continue:
         sorted_checkpoints = _sorted_checkpoints(args)

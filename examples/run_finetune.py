@@ -846,7 +846,7 @@ def main():
 
 
     args = parser.parse_args()
-    args.gpu = int(os.environ['LOCAL_RANK'])
+    args.local_rank = int(os.environ['LOCAL_RANK'])
 
     if args.should_continue:
         sorted_checkpoints = _sorted_checkpoints(args)

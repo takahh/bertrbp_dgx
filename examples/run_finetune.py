@@ -885,7 +885,7 @@ def main():
         device = torch.device("cuda", args.local_rank)
         print(device)
         torch.distributed.init_process_group(backend="nccl")
-        # args.n_gpu = 4
+        args.n_gpu = 4
     args.device = device
 
     # Setup logging

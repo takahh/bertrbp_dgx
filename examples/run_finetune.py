@@ -845,8 +845,6 @@ def main():
     parser.add_argument("--server_port", type=str, default="", help="For distant debugging.")
 
     args = parser.parse_args()
-    print('########### LOCAL_RANK')
-    print(int(os.environ['LOCAL_RANK']))
 
     if args.should_continue:
         sorted_checkpoints = _sorted_checkpoints(args)
@@ -877,14 +875,15 @@ def main():
         ptvsd.wait_for_attach()
 
     # Setup CUDA, GPU & distributed training
-    # if args.local_rank == -1 or args.no_cuda:
-    #     device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
-    #     args.n_gpu = torch.cuda.device_count()
-    # else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
-    torch.cuda.set_device(args.local_rank)
-    device = torch.device("cuda", args.local_rank)
-    torch.distributed.init_process_group(backend="nccl")
-    args.n_gpu = 4
+    if args.local_rank == -1 or args.no_cuda:
+        # device = torch.device("cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
+        device = torch.device("cuda")
+        args.n_gpu = torch.cuda.device_count()
+    else:  # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
+        torch.cuda.set_device(args.local_rank)
+        device = torch.device("cuda", args.local_rank)
+        torch.distributed.init_process_group(backend="nccl")
+        args.n_gpu = 4
     args.device = device
 
     # Setup logging

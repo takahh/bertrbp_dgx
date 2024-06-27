@@ -564,7 +564,7 @@ def load_and_cache_examples(args, task, tokenizer, evaluate=False):
     cached_features_file = os.path.join(
         args.data_dir,
         "cached_{}_{}_{}_{}".format(
-            "dev" if evaluate else "train",
+            "valid" if evaluate else "train",
             list(filter(None, args.model_name_or_path.split("/"))).pop(),
             str(args.max_seq_length),
             str(task),
@@ -574,7 +574,7 @@ def load_and_cache_examples(args, task, tokenizer, evaluate=False):
         cached_features_file = os.path.join(
         args.data_dir,
         "cached_{}_{}_{}".format(
-            "dev" if evaluate else "train",
+            "valid" if evaluate else "train",
             str(args.max_seq_length),
             str(task),
         ),
@@ -589,6 +589,7 @@ def load_and_cache_examples(args, task, tokenizer, evaluate=False):
             # HACK(label indices are swapped in RoBERTa pretrained model)
             label_list[1], label_list[2] = label_list[2], label_list[1]
         examples = (
+            # evaluate: eval on valid data, else: train on train data
             processor.get_dev_examples(args.data_dir) if evaluate else processor.get_train_examples(args.data_dir)
         )
 

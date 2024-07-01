@@ -571,6 +571,10 @@ def load_and_cache_examples(args, task, tokenizer, evaluate=False):
         ),
     )
     if args.do_predict:
+        if "train" in args.data_dir:
+            evaluate = False
+        else:
+            evaluate = True
         cached_features_file = os.path.join(
         args.data_dir,
         "cached_{}_{}_{}".format(

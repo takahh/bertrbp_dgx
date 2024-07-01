@@ -10,6 +10,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../motif'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
 from transformers import BertTokenizer, BertModel
 import torch
+import sys
 # -------------------------------------------------------------------
 # constant
 # -------------------------------------------------------------------

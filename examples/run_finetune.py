@@ -540,7 +540,7 @@ def predict(args, model, tokenizer, prefix=""):
         # for key in sorted(result.keys()):
         #    logger.info("  %s = %s", key, str(result[key]))
         logger.info("Saved pred results to {}".format(output_pred_file))
-        np.save(output_pred_file, probs)
+        np.save(output_pred_file, logits)
 
 
 def format_attention(attention):

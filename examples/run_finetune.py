@@ -891,7 +891,7 @@ def main():
         device = torch.device("cuda", args.local_rank)
         print(device)
         torch.distributed.init_process_group(backend="nccl")
-        args.n_gpu = 1
+        args.n_gpu = 4
         print("pattern B !!!!!!!!!!!!!!")
     args.device = device
 
